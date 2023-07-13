@@ -17,16 +17,21 @@ public class MyHelpAction implements MyAction {
 
     @Override
     public void run(String[] args) {
-        System.out.print("欢迎进入帮助子菜单");
+        System.out.print("欢迎进入设置密码q子菜单\n");
+
+        
 
         String userInput = "";
 
         while(true) {
-            System.out.println("请输入你的指令,q 退出");
+            System.out.println("请输入你的指令,q 退出 set 重置密码");
             System.out.print("你当前在 help 的二级子目录下 >");
             userInput = this.scanner.nextLine();
 
             if (userInput.equals("q")) {
+                break;
+            }
+            if (userInput.equals("set")){
                 break;
             }
 
@@ -35,3 +40,4 @@ public class MyHelpAction implements MyAction {
     }
     
 }
+
