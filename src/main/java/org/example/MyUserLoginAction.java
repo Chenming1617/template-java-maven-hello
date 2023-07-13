@@ -34,6 +34,7 @@ public class MyUserLoginAction implements MyAction {
 
             if (success) {
                 System.out.println("登录成功，返回上层目录");
+                
                 break;
             } else {
                 System.out.println("登录失败，返回上层目录");

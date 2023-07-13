@@ -8,13 +8,15 @@ import java.util.Map;
 public class Mygoods implements Myfunction {
     private Map<String, Goods> goodsMap; // 用Map来存储商品对象，方便查找
     private static final String ACTION_NAME = "goods";
-
-    private Scanner scanner = null;
+    
     Scanner s = new Scanner(System.in);
 
     public Mygoods() {
         goodsMap = new HashMap<String, Goods>();
     };
+
+    
+    private Scanner scanner = null;
 
     public Mygoods(Scanner scanner) {
         this.scanner = scanner;
@@ -31,11 +33,11 @@ public class Mygoods implements Myfunction {
         String userInput = "";
 
         while (true) {
-            System.out.println("请输入你的指令,0退出,1列出商品信息,2添加商品信息,3修改商品信息,4删除商品信息,5查询商品信息");
+            System.out.println("请输入你的指令,q退出,1列出商品信息,2添加商品信息,3修改商品信息,4删除商品信息,5查询商品信息");
             System.out.print("你当前在***商品管理***的三级子菜单下 >");
             userInput = s.nextLine();
 
-            if (userInput.equals("0")) {
+            if (userInput.equals("q")) {
                 break;
             }
             if (userInput.equals("1")) {
@@ -53,11 +55,13 @@ public class Mygoods implements Myfunction {
                 String Id = s.nextLine();
 
                 Goods good = new Goods(Id, name, price);
-                addGoods(good);
+                System.out.println(good.getGoodsId());
+                addGoods(good.getGoodsId());
             }
             if (userInput.equals("3")) {
                 System.out.println("You select to alter the Goods,plesae enter the goodsId of goods");
                 String Id = s.nextLine();
+               
                 alterGoods(Id);
             }
             if(userInput.equals("4")){
@@ -75,8 +79,8 @@ public class Mygoods implements Myfunction {
     }
 
 
-    public void addGoods(Goods goods) {
-        goodsMap.put(goods.getGoodsId(), goods);
+    public void addGoods(String goodsId) {
+        goodsMap.put(goodsId, findGoods1(goodsId));
     }
 
     public void removeGoods(String goodsId) {
@@ -114,7 +118,6 @@ public class Mygoods implements Myfunction {
         if (goodsMap.containsKey(goodsId)) {
             return goodsMap.get(goodsId);
         } else {
-            System.out.println("No information found for item " + goodsId);
             return null;
         }
     }
@@ -153,8 +156,9 @@ public class Mygoods implements Myfunction {
             while (true) {
                 System.out.println("What do you want to alter,0 GoodsID,1 GoodsPrice,2 GoodsName,3 exit");
                 int num = s.nextInt();
-                if(num==3) break;
                 String delete = s.nextLine();
+                if(num==3) break;
+                
                 switch (num) {
                     case 0:
                         System.out.println("Please enter the GoodsID");

@@ -28,14 +28,34 @@ public class MyAdminstrator implements MyAction {
 
     @Override
     public void run(String[] args) {
+        DatabaseInitializer databaseInitializer = new DatabaseInitializer();
+        databaseInitializer.initializeDatabase();
+
+        MyUserManager userManager = new MyUserManager();
+        
+        Scanner scanner = new Scanner(System.in);
+        List<MyAction> actionList = new ArrayList<MyAction>();
+        MyUserRegisterAction userRegister = new MyUserRegisterAction(scanner, userManager);
+        actionList.add(userRegister);
+        MyUserLoginAction userLogin = new MyUserLoginAction(scanner, userManager);
+        actionList.add(userLogin);
         System.out.print("********欢迎进入管理员菜单********\n");
-        System.out.println("请输入管理员的用户ID和密码!");
-        String ID = "";
-        String psw = "";
-        ID=s.nextLine();
-        psw=s.nextLine();
-        System.out.println(ID+"shi1e");
-        System.out.println(psw);
+        
+        System.out.println("请选择注册:register还是登录:login");
+        String userInput1 = "";
+        userInput1 = this.scanner.nextLine();
+        String actionName = null;
+        
+        for(MyAction oneAction: actionList) {
+            actionName = oneAction.getActionName();
+
+            if (userInput1.equalsIgnoreCase(actionName)) {
+                oneAction.run(null);
+            }
+        }
+
+        
+        System.out.println("success!");
         
         String userInput = "";
 
@@ -46,11 +66,19 @@ public class MyAdminstrator implements MyAction {
             if (userInput.equals("q")) {
                 break;
             }
-            if (userInput.equals("g")){
+            else if (userInput.equals("g")){
                 Myfunction A;
                 A=new Mygoods();
                 A.run(null);
             }
+            else if(userInput.equals("k")){
+                break;
+
+            }
+            else if(userInput.equals("p")){
+                break;
+            }
+           
 
             
 

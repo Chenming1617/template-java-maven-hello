@@ -35,11 +35,11 @@ public class Main {
         String userInput = "";
 
         while (true) {
-            System.out.println("请选择你的指令,ad管理员系统,user用户系统,exit退出");
+            System.out.println("请选择你的指令,q退出,ad管理员系统,user用户系统");
             System.out.print("你当前在第一级目录下 >");
             userInput = scanner.nextLine();
 
-            if (userInput.equals("exit")) {
+            if (userInput.equals("q")) {
                 break;
             }
             
