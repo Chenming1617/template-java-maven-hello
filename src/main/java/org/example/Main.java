@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("**********欢迎进入购物车管理系统**********");
+        System.out.println("********欢迎进入购物车管理系统********");
 
         Scanner scanner = new Scanner(System.in);
 
