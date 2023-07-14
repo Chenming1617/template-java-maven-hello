@@ -12,7 +12,7 @@ public class Main {
         DatabaseInitializer databaseInitializer = new DatabaseInitializer();
         databaseInitializer.initializeDatabase();
 
-        MyUserManager userManager = new MyUserManager();
+       // MyUserManager userManager = new MyUserManager();
         
         Scanner scanner = new Scanner(System.in);
 
@@ -26,11 +26,11 @@ public class Main {
         MyAboutAction about = new MyAboutAction(scanner);
         actionList.add(about);
 
-        MyUserRegisterAction userRegister = new MyUserRegisterAction(scanner, userManager);
-        actionList.add(userRegister);
+       // MyUserRegisterAction userRegister = new MyUserRegisterAction(scanner, userManager);
+        //actionList.add(userRegister);
 
-        MyUserLoginAction userLogin = new MyUserLoginAction(scanner, userManager);
-        actionList.add(userLogin);
+        //MyUserLoginAction userLogin = new MyUserLoginAction(scanner, userManager);
+       // actionList.add(userLogin);
 
         String userInput = "";
 

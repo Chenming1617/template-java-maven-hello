@@ -34,7 +34,7 @@ public class MyAdminstrator implements MyAction {
         MyUserManager userManager = new MyUserManager();
         
         Scanner scanner = new Scanner(System.in);
-        List<MyAction> actionList = new ArrayList<MyAction>();
+        List<MyBooleanAction> actionList = new ArrayList<MyBooleanAction>();
         MyUserRegisterAction userRegister = new MyUserRegisterAction(scanner, userManager);
         actionList.add(userRegister);
         MyUserLoginAction userLogin = new MyUserLoginAction(scanner, userManager);
@@ -45,21 +45,19 @@ public class MyAdminstrator implements MyAction {
         String userInput1 = "";
         userInput1 = this.scanner.nextLine();
         String actionName = null;
-        
-        for(MyAction oneAction: actionList) {
+        boolean A=false;
+        for(MyBooleanAction oneAction: actionList) {
             actionName = oneAction.getActionName();
 
             if (userInput1.equalsIgnoreCase(actionName)) {
-                oneAction.run(null);
+                A=oneAction.run(null);
             }
         }
-
         
-        System.out.println("success!");
         
         String userInput = "";
 
-        while(true){
+        while(A){
             System.out.println("请输入你的指令,q退出,p密码管理,k客户管理,g商品管理");
             System.out.print("你当前在***管理员***二级子目录下 >");
             userInput = this.scanner.nextLine();
@@ -67,9 +65,9 @@ public class MyAdminstrator implements MyAction {
                 break;
             }
             else if (userInput.equals("g")){
-                Myfunction A;
-                A=new Mygoods();
-                A.run(null);
+                Myfunction B;
+                B=new Mygoods();
+                B.run(null);
             }
             else if(userInput.equals("k")){
                 break;
@@ -78,15 +76,9 @@ public class MyAdminstrator implements MyAction {
             else if(userInput.equals("p")){
                 break;
             }
-           
 
-            
 
         }
-
-
-
-
     }
     
     

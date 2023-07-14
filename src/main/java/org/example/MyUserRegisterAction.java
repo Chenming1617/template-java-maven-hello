@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Scanner;
 
-public class MyUserRegisterAction implements MyAction {
+public class MyUserRegisterAction implements MyBooleanAction {
 
     private static final String ACTION_NAME = "register";
 
@@ -20,7 +20,7 @@ public class MyUserRegisterAction implements MyAction {
     }
 
     @Override
-    public void run(String[] args) {
+    public Boolean run (String[] args) {
         System.out.println("现在你在用户注册子菜单里.");
         while (true) {
             System.out.print("请输入用户名:");
@@ -32,9 +32,11 @@ public class MyUserRegisterAction implements MyAction {
             boolean success = this.userManager.registerUser(username, password);
             
             if (success) {
-                break;
+                System.out.println("success!");
+                return success;
             }
         }
+        
     }
     
 }
