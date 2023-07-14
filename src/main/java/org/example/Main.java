@@ -11,6 +11,7 @@ public class Main {
 
         DatabaseInitializer databaseInitializer = new DatabaseInitializer();
         databaseInitializer.initializeDatabase();
+        databaseInitializer.initializeDatabase1();
 
        // MyUserManager userManager = new MyUserManager();
         

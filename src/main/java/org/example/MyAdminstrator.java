@@ -31,13 +31,13 @@ public class MyAdminstrator implements MyAction {
         DatabaseInitializer databaseInitializer = new DatabaseInitializer();
         databaseInitializer.initializeDatabase();
 
-        MyUserManager userManager = new MyUserManager();
+        MyAdmManager userManager = new MyAdmManager();
         
         Scanner scanner = new Scanner(System.in);
         List<MyBooleanAction> actionList = new ArrayList<MyBooleanAction>();
-        MyUserRegisterAction userRegister = new MyUserRegisterAction(scanner, userManager);
+        MyAdmRegisterAction userRegister = new MyAdmRegisterAction(scanner, userManager);
         actionList.add(userRegister);
-        MyUserLoginAction userLogin = new MyUserLoginAction(scanner, userManager);
+        MyAdmLoginAction userLogin = new MyAdmLoginAction(scanner, userManager);
         actionList.add(userLogin);
         System.out.print("********欢迎进入管理员菜单********\n");
         
@@ -45,19 +45,20 @@ public class MyAdminstrator implements MyAction {
         String userInput1 = "";
         userInput1 = this.scanner.nextLine();
         String actionName = null;
-        boolean A=false;
+        boolean Judge=false;
+
         for(MyBooleanAction oneAction: actionList) {
             actionName = oneAction.getActionName();
 
             if (userInput1.equalsIgnoreCase(actionName)) {
-                A=oneAction.run(null);
+                Judge=oneAction.run(null);
             }
         }
         
         
         String userInput = "";
 
-        while(A){
+        while(Judge){
             System.out.println("请输入你的指令,q退出,p密码管理,k客户管理,g商品管理");
             System.out.print("你当前在***管理员***二级子目录下 >");
             userInput = this.scanner.nextLine();
@@ -65,9 +66,9 @@ public class MyAdminstrator implements MyAction {
                 break;
             }
             else if (userInput.equals("g")){
-                Myfunction B;
-                B=new Mygoods();
-                B.run(null);
+                Myfunction good;
+                good=new Mygoods();
+                good.run(null);
             }
             else if(userInput.equals("k")){
                 break;

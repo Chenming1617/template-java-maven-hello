@@ -15,7 +15,7 @@ public class MyPasswordManagement implements MyAction  {
 
     @Override
     public void run(String[] args) {
-        
+        System.out.println("HHHH");
         
     }
 
