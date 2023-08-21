@@ -23,9 +23,6 @@ public class Main {
         MyAdminstrator ad=new MyAdminstrator(scanner);
         actionList.add(ad);
 
-        MyAboutAction about = new MyAboutAction(scanner);
-        actionList.add(about);
-
         MyUserRegisterAction userRegister = new MyUserRegisterAction(scanner, userManager);
         actionList.add(userRegister);
 
