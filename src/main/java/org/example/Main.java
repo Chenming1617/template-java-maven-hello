@@ -18,14 +18,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         List<MyAction> actionList = new ArrayList<MyAction>();
-        MyHelpAction help = new MyHelpAction(scanner);
-        actionList.add(help);
-
+        
         MyAdminstrator ad=new MyAdminstrator(scanner);
         actionList.add(ad);
-
-        MyAboutAction about = new MyAboutAction(scanner);
-        actionList.add(about);
 
        // MyUserRegisterAction userRegister = new MyUserRegisterAction(scanner, userManager);
         //actionList.add(userRegister);
