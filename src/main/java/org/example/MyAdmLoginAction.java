@@ -21,7 +21,7 @@ public class MyAdmLoginAction implements MyBooleanAction {
 
     @Override
     public Boolean run(String[] args) {
-        System.out.println("现在你在用户登录子菜单里.");
+        System.out.println("现在你在管理员登录子菜单里.");
 
         while (true) {
             System.out.print("用户名：");

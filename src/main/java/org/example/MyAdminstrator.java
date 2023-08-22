@@ -28,31 +28,40 @@ public class MyAdminstrator implements MyAction {
 
     @Override
     public void run(String[] args) {
-       //DatabaseInitializer databaseInitializer = new DatabaseInitializer();
-        //databaseInitializer.initializeDatabaseAdm();
+       DatabaseInitializer databaseInitializer = new DatabaseInitializer();
+        databaseInitializer.initializeDatabaseAdm();
 
-        MyAdmManager userManager = new MyAdmManager();
+        //MyAdmManager userManager = new MyAdmManager();
         
         Scanner scanner = new Scanner(System.in);
         List<MyBooleanAction> actionList = new ArrayList<MyBooleanAction>();
-        MyAdmRegisterAction userRegister = new MyAdmRegisterAction(scanner, userManager);
-        actionList.add(userRegister);
-        MyAdmLoginAction userLogin = new MyAdmLoginAction(scanner, userManager);
-        actionList.add(userLogin);
+       // MyAdmRegisterAction userRegister = new MyAdmRegisterAction(scanner, userManager);
+       // actionList.add(userRegister);
+        //MyAdmLoginAction userLogin = new MyAdmLoginAction(scanner, userManager);
+        //actionList.add(userLogin);
+        MypassManager manager=new MypassManager();
         System.out.print("********欢迎进入管理员菜单********\n");
         
         System.out.println("请选择注册:register还是登录:login");
         String userInput1 = "";
         userInput1 = this.scanner.nextLine();
-        String actionName = null;
+        //String actionName = null;
         boolean Judge=false;
 
-        for(MyBooleanAction oneAction: actionList) {
-            actionName = oneAction.getActionName();
+        // for(MyBooleanAction oneAction: actionList) {
+        //     actionName = oneAction.getActionName();
 
-            if (userInput1.equalsIgnoreCase(actionName)) {
-                Judge=oneAction.run(null);
-            }
+        //     if (userInput1.equalsIgnoreCase(actionName)) {
+        //         Judge=oneAction.run(null);
+        //     }
+        // }
+        MypassLogin login=new MypassLogin(scanner, manager);
+        MypassRegister register=new MypassRegister(scanner, manager);
+        if(userInput1.equals("register")){
+            Judge=register.admRegister();
+        }
+        else if(userInput1.equals("login")){
+            Judge=login.AmdLogin();
         }
         
         

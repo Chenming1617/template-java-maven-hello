@@ -8,8 +8,8 @@ import java.sql.SQLException;
 
 public class MypassManager {
     private static final String DB_URL1 = "jdbc:sqlite:users.db";
-    private static final String DB_URL2 = "jdbc:sqlite:users.db";
-    public boolean registerUser(String username, String password) {
+    private static final String DB_URL2 = "jdbc:sqlite:adm.db";
+    public boolean registerUser(String username, String password) {//用户注册
         try (Connection connection = DriverManager.getConnection(DB_URL1);
              PreparedStatement statement = connection.prepareStatement("INSERT INTO Users (username, password) VALUES (?, ?)")) {
             statement.setString(1, username);
@@ -24,7 +24,7 @@ public class MypassManager {
 
         return false;
     }
-    public boolean registerAdm(String username, String password) {
+    public boolean registerAdm(String username, String password) {//管理员注册
         try (Connection connection = DriverManager.getConnection(DB_URL2);
              PreparedStatement statement = connection.prepareStatement("INSERT INTO Adm (username, password) VALUES (?, ?)")) {
             statement.setString(1, username);
@@ -39,7 +39,7 @@ public class MypassManager {
 
         return false;
     }
-    public boolean loginUser(String username, String password) {
+    public boolean loginUser(String username, String password) {//用户登录
         try (Connection connection = DriverManager.getConnection(DB_URL1);
              PreparedStatement statement = connection.prepareStatement("SELECT * FROM Users WHERE username = ?")) {
             statement.setString(1, username);
@@ -61,7 +61,7 @@ public class MypassManager {
         }
         return false;
     }
-    public boolean loginAdm(String username, String password) {
+    public boolean loginAdm(String username, String password) {//管理员登录
         try (Connection connection = DriverManager.getConnection(DB_URL2);
              PreparedStatement statement = connection.prepareStatement("SELECT * FROM Adm WHERE username = ?")) {
             statement.setString(1, username);
