@@ -28,8 +28,8 @@ public class MyAdminstrator implements MyAction {
 
     @Override
     public void run(String[] args) {
-       DatabaseInitializer databaseInitializer = new DatabaseInitializer();
-        databaseInitializer.initializeDatabaseAdm();
+       //DatabaseInitializer databaseInitializer = new DatabaseInitializer();
+        //databaseInitializer.initializeDatabaseAdm();//创建一次就行了，后面注释掉
         Scanner scanner = new Scanner(System.in);
         MypassManager manager=new MypassManager();
         System.out.print("********欢迎进入管理员菜单********\n");
@@ -50,6 +50,7 @@ public class MyAdminstrator implements MyAction {
         
         
         String userInput = "";
+        
 
         while(Judge){
             System.out.println("请输入你的指令,q退出,p密码管理,k客户管理,g商品管理");
@@ -65,15 +66,33 @@ public class MyAdminstrator implements MyAction {
                 good.run(null);
             }
             else if(userInput.equals("p")){
-                System.out.println("你现在在**密码管理**三级菜单下");
+                System.out.println("你现在在**修改密码管理**三级菜单下");
                 MypassAlter alter=new MypassAlter(scanner, manager);
                 alter.alterAdmpass();
                 
                 break;
             }
             else if(userInput.equals("k")){
-                break;
-
+                while(true){
+                    System.out.println("你现在在**客户管理**三级菜单下");
+                    
+                    MypassAlter alter =new MypassAlter(scanner,manager);
+                    System.out.print("请选择：a.列出所有用户信息b.根据用户名删除用户信息c.根据用户名查询用户信息q.退出");
+                    
+                    String userInput2 = this.scanner.nextLine();
+                    if (userInput2.equals("a")) {
+                        alter.listUserinf();
+                    }
+                    else if(userInput2.equals("b")){
+                        alter.deltUserinf();
+                    }
+                    else if(userInput2.equals("c")){
+                        alter.searchUserinf();
+                    }
+                    else if(userInput2.equals("q")){
+                        break;
+                    }
+                }
             }
             
 

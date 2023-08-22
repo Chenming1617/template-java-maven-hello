@@ -10,8 +10,11 @@ public class Main {
         System.out.println("Hello world!");
 
         DatabaseInitializer databaseInitializer = new DatabaseInitializer();
-        databaseInitializer.initializeDatabaseUser();
-        databaseInitializer.initializeDatabaseAdm();
+        databaseInitializer.initializeDatabaseGoods();
+        databaseInitializer.initializeDatabaseShops();
+        //databaseInitializer.initializeDatabaseUser();
+       // databaseInitializer.initializeDatabaseAdm();
+        
 
        // MyUserManager userManager = new MyUserManager();
         
@@ -21,6 +24,8 @@ public class Main {
         
         MyAdminstrator ad=new MyAdminstrator(scanner);
         actionList.add(ad);
+        MyUser user=new MyUser(scanner);
+        actionList.add(user);
 
         String userInput = "";
 

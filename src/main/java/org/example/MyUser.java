@@ -65,7 +65,7 @@ public class MyUser implements MyAction {
             }
           
             else if(userInput.equals("p")){
-                System.out.println("你现在在**密码管理**三级菜单下");
+                System.out.println("你现在在**修改密码管理**三级菜单下");
                 MypassAlter alter=new MypassAlter(scanner, manager);
                 alter.alterUserpass();
                 

@@ -125,9 +125,67 @@ public class MypassAlter {
         }
     }
     public void deltUserinf(){
+        try (Connection conn = DriverManager.getConnection(DB_URL1)) {
+            // 创建PreparedStatement对象
+            String sql = "DELETE FROM Users WHERE username = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            // 从键盘读取用户名
+       
+            System.out.print("请输入要删除的用户名：");
+            String usernameToDelete = this.scanner.nextLine();
+
+            // 设置参数
+            pstmt.setString(1, usernameToDelete);
+
+            // 执行删除操作
+            int rowsAffected = pstmt.executeUpdate();
+            System.out.println("Deleted "+ rowsAffected + " rows.");
+
+            // 关闭资源
+            pstmt.close();
+        } catch (SQLException e) {
+            System.out.println("Failed to initialize database: " + e.getMessage());
+        }
 
     }
     public void searchUserinf(){
+        try (Connection conn = DriverManager.getConnection(DB_URL1)) {
+            // 从键盘读取用户名
+           
+            System.out.print("请输入要查询的用户名：");
+            String username = this.scanner.nextLine();
 
+            // 创建PreparedStatement对象
+            String sql = "SELECT * FROM Users WHERE username = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, username);
+
+            // 执行查询操作
+            ResultSet rs = pstmt.executeQuery();
+
+            // 检查结果集是否有数据
+            if (rs.next()) {
+                // 提取结果集中的数据
+                int id = rs.getInt("id");
+                String name = rs.getString("username");
+                // 其他列...
+
+                // 打印结果
+                System.out.println("User found:");
+                System.out.println("ID: " + id);
+                System.out.println("Username: " + name);
+                // 其他列...
+
+            } else {
+                System.out.println("User not found.");
+            }
+
+            // 关闭资源
+            rs.close();
+            pstmt.close();
+        } catch (SQLException e) {
+            System.out.println("Failed to initialize database: " + e.getMessage());
+        }
     }
 }
