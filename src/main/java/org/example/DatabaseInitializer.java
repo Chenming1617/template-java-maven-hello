@@ -9,7 +9,7 @@ public class DatabaseInitializer {
     private static final String DB_URL = "jdbc:sqlite:users.db";
     private static final String DB_URL1 = "jdbc:sqlite:adm.db";
     private static final String DB_URL2 = "jdbc:sqlite:goods.db";
-    private static final String DB_URL3 = "jdbc:sqlite:shops.db";
+   // private static final String DB_URL3 = "jdbc:sqlite:shops.db";
 
     public void initializeDatabaseUser() {
         try (Connection connection = DriverManager.getConnection(DB_URL);
@@ -43,7 +43,7 @@ public class DatabaseInitializer {
     }
 
     public void initializeDatabaseShops() {
-        try (Connection connection = DriverManager.getConnection(DB_URL3);
+        try (Connection connection = DriverManager.getConnection(DB_URL2);
              Statement statement = connection.createStatement()) {
             String createTableQuery = "CREATE TABLE IF NOT EXISTS Shops (id INTEGER PRIMARY KEY AUTOINCREMENT, shopname TEXT, quantity INT ,price REAL)";
             statement.executeUpdate(createTableQuery);

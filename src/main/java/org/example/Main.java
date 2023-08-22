@@ -22,12 +22,6 @@ public class Main {
         MyAdminstrator ad=new MyAdminstrator(scanner);
         actionList.add(ad);
 
-       // MyUserRegisterAction userRegister = new MyUserRegisterAction(scanner, userManager);
-        //actionList.add(userRegister);
-
-        //MyUserLoginAction userLogin = new MyUserLoginAction(scanner, userManager);
-       // actionList.add(userLogin);
-
         String userInput = "";
 
         while (true) {
