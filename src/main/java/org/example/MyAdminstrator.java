@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class MyAdminstrator implements MyAction {
     private static final String ACTION_NAME = "ad";
     private Scanner scanner = null;
-    private Scanner s=new Scanner(System.in);
+    //private Scanner s=new Scanner(System.in);
     
 
     public MyAdminstrator() {
@@ -28,8 +28,8 @@ public class MyAdminstrator implements MyAction {
 
     @Override
     public void run(String[] args) {
-        DatabaseInitializer databaseInitializer = new DatabaseInitializer();
-        databaseInitializer.initializeDatabase();
+       //DatabaseInitializer databaseInitializer = new DatabaseInitializer();
+        //databaseInitializer.initializeDatabaseAdm();
 
         MyAdmManager userManager = new MyAdmManager();
         
