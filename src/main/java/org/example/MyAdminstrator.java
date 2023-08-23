@@ -60,16 +60,38 @@ public class MyAdminstrator implements MyAction {
                 break;
             }
             else if (userInput.equals("g")){//商品管理
-                System.out.println("你现在在**商品管理**三级菜单下");
-                Myfunction good;
-                good=new Mygoods();
-                good.run(null);
+                while(true){
+                    System.out.println("你现在在**商品管理**三级菜单下");
+                    
+                    MygoodManager good =new MygoodManager(scanner);
+                    System.out.print("请选择: a.列出所有商品信息b.增加商品信息c.删除商品信息d.修改商品信息e.查找商品信息q.退出");
+                    
+                    String userInput2 = this.scanner.nextLine();
+                    if (userInput2.equals("a")) {
+                        System.out.println("还没实现！");
+            
+                    }
+                    else if(userInput2.equals("b")){
+                        good.addGoods();
+                    }
+                    else if(userInput2.equals("c")){
+                        good.deleteGoods();
+                    }
+                    else if(userInput2.equals("d")){
+                        good.alterGoods();
+                    }
+                    else if(userInput2.equals("e")){
+                        good.SearchGoods();
+                    }
+                    else if(userInput2.equals("q")){
+                        break;
+                    }
+                }
             }
             else if(userInput.equals("p")){
                 System.out.println("你现在在**修改密码管理**三级菜单下");
                 MypassAlter alter=new MypassAlter(scanner, manager);
                 alter.alterAdmpass();
-                
                 break;
             }
             else if(userInput.equals("k")){

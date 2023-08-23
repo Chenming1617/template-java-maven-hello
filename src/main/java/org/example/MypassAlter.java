@@ -167,15 +167,15 @@ public class MypassAlter {
             // 检查结果集是否有数据
             if (rs.next()) {
                 // 提取结果集中的数据
-                int id = rs.getInt("id");
-                String name = rs.getString("username");
-                // 其他列...
+                int userId = rs.getInt("id");
+                String username1 = rs.getString("username");
+                String password = rs.getString("password");
+                // 可以根据实际的表结构添加其他列信息
 
-                // 打印结果
-                System.out.println("User found:");
-                System.out.println("ID: " + id);
-                System.out.println("Username: " + name);
-                // 其他列...
+                // 打印用户信息
+                System.out.println("User ID: " + userId);
+                System.out.println("Username: " + username1);
+                System.out.println("Password: " + password);
 
             } else {
                 System.out.println("User not found.");

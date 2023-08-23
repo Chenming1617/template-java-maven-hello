@@ -4,6 +4,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 public class MygoodManager {
     private static final String DB_URL = "jdbc:sqlite:goods.db";
@@ -79,10 +80,121 @@ public class MygoodManager {
     }
 
     public void alterGoods(){
-
+        try {
+            // 建立数据库连接
+            Connection connection = DriverManager.getConnection(DB_URL);
+            // 键盘输入商品名称
+            System.out.print("请输入商品名称：");
+            String name = scanner.nextLine();
+            // 检索商品数量并获取结果集
+            String selectSql = "SELECT quantity FROM Goods WHERE goodname = ?";
+            PreparedStatement selectStatement = connection.prepareStatement(selectSql);
+            selectStatement.setString(1, name);
+            ResultSet resultSet = selectStatement.executeQuery();
+            int quantity = 0;
+            // 如果结果集不为空，获取数量(quantity)
+            if (resultSet.next()) {
+                quantity = resultSet.getInt("quantity");
+            }
+            else{
+                System.out.println("该商品不存在。");
+            }
+            // 关闭资源
+            resultSet.close();
+            selectStatement.close();
+            // 如果商品不存在，返回0
+            // 键盘输入取出或增加的数量(num)
+            System.out.print("请输入要取出(负数)或增加的数量：");
+            int num = scanner.nextInt();
+            
+            // 计算新的数量
+            int newQuantity = quantity + num;
+            
+            // 更新表中的数量
+            String updateSql = "UPDATE Goods SET quantity = ? WHERE goodname = ?";
+            PreparedStatement updateStatement = connection.prepareStatement(updateSql);
+            updateStatement.setInt(1, newQuantity);
+            updateStatement.setString(2, name);
+            int rowsAffected = updateStatement.executeUpdate();
+            
+            System.out.println(rowsAffected + " 行数据已更新。");
+            
+            // 关闭资源
+            updateStatement.close();
+            // 关闭资源
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }    
     }
-
     public void SearchGoods(){
+        try {
+            // 建立数据库连接
+            Connection connection = DriverManager.getConnection(DB_URL);
+            // 键盘输入商品名称
+            System.out.print("请输入商品名称：");
+            String name = scanner.nextLine();
+            // 检索商品数量并获取结果集
+            String selectSql = "SELECT quantity FROM Goods WHERE goodname = ?";
+            PreparedStatement selectStatement = connection.prepareStatement(selectSql);
+            selectStatement.setString(1, name);
+            ResultSet resultSet = selectStatement.executeQuery();
 
+            int quantity = 0;
+            // 如果结果集不为空，获取数量(quantity)
+            if (resultSet.next()) {
+                int goodId = resultSet.getInt("id");
+                quantity = resultSet.getInt("quantity");
+                String goodname = resultSet.getString("goodname");
+                float price=resultSet.getFloat("price");
+                System.out.println("Goods ID: " + goodId);
+                System.out.println("Goodname: " + goodname);
+                System.out.println("Quantity: " + quantity);
+                System.out.println("Price: "+price);
+
+            }
+            else{
+                System.out.println("该商品不存在。");
+            }
+            resultSet.close();
+            selectStatement.close();
+         
+        } catch (SQLException e) {
+            System.out.println("Failed to initialize database: " + e.getMessage());
+        }  
+    }
+    public void listGoods(){
+        try (Connection conn = DriverManager.getConnection(DB_URL)) {
+            // 创建Statement对象
+            Statement stmt = conn.createStatement();
+
+            // 执行查询语句
+            String query = "SELECT * FROM Goods";
+            ResultSet resultSet = stmt.executeQuery(query);
+
+            // 打印查询结果
+            while (resultSet.next()) {
+                int goodId = resultSet.getInt("id");
+                String goodname = resultSet.getString("goodname");
+                int quantity = resultSet.getInt("quantity");
+                float price =resultSet.getFloat("price");
+
+                // 可以根据实际的表结构添加其他列信息
+
+                // 打印用户信息
+                System.out.println("Goods ID: " + goodId);
+                System.out.println("Goodname: " + goodname);
+                System.out.println("quantity: " + quantity);
+                System.out.println("Price: "+price);
+                // 可以打印其他列信息
+                System.out.println("--------------------------------------");
+            }
+
+            // 关闭Statement和ResultSet
+            stmt.close();
+            resultSet.close();
+        } catch (SQLException e) {
+            System.out.println("Failed to initialize database: " + e.getMessage());
+        }
     }
 }
