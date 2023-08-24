@@ -52,4 +52,15 @@ public class DatabaseInitializer {
             System.out.println("Failed to initialize database: " + e.getMessage());
         }
     }
+
+    public void initializeDatabaseList() {
+        try (Connection connection = DriverManager.getConnection(DB_URL2);
+             Statement statement = connection.createStatement()) {
+            String createTableQuery = "CREATE TABLE IF NOT EXISTS List (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, quantity INT ,price REAL)";
+            statement.executeUpdate(createTableQuery);
+            System.out.println("DatabaseList initialized successfully!");
+        } catch (SQLException e) {
+            System.out.println("Failed to initialize database: " + e.getMessage());
+        }
+    }
 }

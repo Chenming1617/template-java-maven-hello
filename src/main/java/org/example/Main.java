@@ -10,8 +10,9 @@ public class Main {
         System.out.println("Hello world!");
 
         DatabaseInitializer databaseInitializer = new DatabaseInitializer();
-        databaseInitializer.initializeDatabaseGoods();
-        databaseInitializer.initializeDatabaseShops();
+        //databaseInitializer.initializeDatabaseGoods();
+       // databaseInitializer.initializeDatabaseShops();
+        databaseInitializer.initializeDatabaseList();
         //databaseInitializer.initializeDatabaseUser();
        // databaseInitializer.initializeDatabaseAdm();
         

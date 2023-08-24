@@ -1,6 +1,4 @@
 package org.example;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class MyUser implements MyAction {
@@ -10,9 +8,7 @@ public class MyUser implements MyAction {
     
 
     public MyUser() {
-        List<Myfunction> myList=new ArrayList<Myfunction>();
-        Mygoods goods=new Mygoods(scanner);
-        myList.add(goods);
+       
     }
 
 
@@ -59,9 +55,37 @@ public class MyUser implements MyAction {
                 break;
             }
             else if (userInput.equals("g")){//购物车管理
-                Myfunction good;
-                good=new Mygoods();
-                good.run(null);
+                while(true){
+                    System.out.println("你现在在**购物车管理**三级菜单下");
+                    
+                    MyshopManager shop=new MyshopManager(scanner);
+                    System.out.print("请选择: a.列出所有商店商品信息 b.增加商品到购物车 c.删除购物车中商品");
+                    System.out.println("d.修改购物车中商品信息 e.模拟结账 f.查看购物历史记录 q.退出");
+                    
+                    String userInput2 = this.scanner.nextLine();
+                    if (userInput2.equals("a")) {
+                        shop.listGoods();
+            
+                    }
+                    else if(userInput2.equals("b")){
+                        shop.addShops();
+                    }
+                    else if(userInput2.equals("c")){
+                        shop.deleteShops();
+                    }
+                    else if(userInput2.equals("d")){
+                        shop.alterShops();
+                    }
+                    else if(userInput2.equals("e")){
+                        shop.checkShops();
+                    }
+                    else if(userInput2.equals("f")){
+                        shop.listShopHistory();
+                    }
+                    else if(userInput2.equals("q")){
+                        break;
+                    }
+                }
             }
           
             else if(userInput.equals("p")){

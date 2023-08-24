@@ -1,6 +1,4 @@
 package org.example;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class MyAdminstrator implements MyAction {
@@ -10,9 +8,8 @@ public class MyAdminstrator implements MyAction {
     
 
     public MyAdminstrator() {
-        List<Myfunction> myList=new ArrayList<Myfunction>();
-        Mygoods goods=new Mygoods(scanner);
-        myList.add(goods);
+       
+
     }
 
 
@@ -68,7 +65,7 @@ public class MyAdminstrator implements MyAction {
                     
                     String userInput2 = this.scanner.nextLine();
                     if (userInput2.equals("a")) {
-                        System.out.println("还没实现！");
+                        good.listGoods();
             
                     }
                     else if(userInput2.equals("b")){

@@ -28,12 +28,16 @@ public class MygoodManager {
             
             System.out.print("请输入商品名称：");
             String goodname = this.scanner.nextLine();
+
+            System.out.print("请输入商品价格：");
+            float price = this.scanner.nextFloat();
+            String shit = this.scanner.nextLine();
             
             System.out.print("请输入商品数量：");
             int quantity = this.scanner.nextInt();
+            String shit2 = this.scanner.nextLine();
             
-            System.out.print("请输入商品价格：");
-            float price = this.scanner.nextFloat();
+            
             
             // 设置预处理语句的参数
             statement.setString(1, goodname);
