@@ -7,10 +7,12 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello world!");
-
         Scanner scanner = new Scanner(System.in);
-
+        MyflieInit init=new MyflieInit();
+        init.createCustomerFile();
+        init.createGoodsFile();
+        init.createShopshistoryFile();
+        
         List<MyAction> actionList = new ArrayList<MyAction>();
 
 
@@ -21,11 +23,11 @@ public class Main {
         String userInput = "";
 
         while (true) {
-            System.out.println("请选择你的指令,ad管理员系统,user用户系统,exit退出");
+            System.out.println("请选择你的指令,ad管理员系统,user用户系统,q退出");
             System.out.print("你当前在第一级目录下 >");
             userInput = scanner.nextLine();
 
-            if (userInput.equals("exit")) {
+            if (userInput.equals("q")) {
                 break;
             }
             

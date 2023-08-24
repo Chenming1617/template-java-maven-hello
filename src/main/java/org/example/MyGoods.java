@@ -61,5 +61,20 @@ public class MyGoods {
         this.quantity = quantity;
     }
 
+    public void addGoods(MyGoods good){
+        
+    }
+    public void deltGoods(){
+
+    }
+    public void alterGoods(){
+
+    }
+    public void searchGoods(){
+
+    }
+    public void listGoods(){
+
+    }
     
 }
