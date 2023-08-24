@@ -48,6 +48,40 @@ public class MyshopManager {
             System.out.println("Failed to initialize database: " + e.getMessage());
         }
     }
+    public void listShops(){
+        try (Connection conn = DriverManager.getConnection(DB_URL)) {
+            // 创建Statement对象
+            Statement stmt = conn.createStatement();
+
+            // 执行查询语句
+            String query = "SELECT * FROM Shops";
+            ResultSet resultSet = stmt.executeQuery(query);
+
+            // 打印查询结果
+            while (resultSet.next()) {
+                int shopId = resultSet.getInt("id");
+                String shopname = resultSet.getString("shopname");
+                int quantity = resultSet.getInt("quantity");
+                float price =resultSet.getFloat("price");
+
+                // 可以根据实际的表结构添加其他列信息
+
+                // 打印用户信息
+                System.out.println("Goods ID: " + shopId);
+                System.out.println("Goodname: " + shopname);
+                System.out.println("quantity: " + quantity);
+                System.out.println("Price: "+price);
+                // 可以打印其他列信息
+                System.out.println("--------------------------------------");
+            }
+
+            // 关闭Statement和ResultSet
+            stmt.close();
+            resultSet.close();
+        } catch (SQLException e) {
+            System.out.println("Failed to initialize database: " + e.getMessage());
+        }
+    }
     public void addShops(){//加购物车
         try {
             // 建立数据库连接
@@ -69,6 +103,7 @@ public class MyshopManager {
                 // 键盘输入新的数量
                 System.out.print("请输入加入购物车的商品数量：");
                 int newquantity = scanner.nextInt();
+                String shit =scanner.nextLine();
                 
                 // 获取Goods表中的goodname和price数据
                 float price = resultSet.getFloat("price");
@@ -147,6 +182,7 @@ public class MyshopManager {
             // 键盘输入取出或增加的数量(num)
             System.out.print("请输入要删除(负数)或增加的数量：");
             int num = scanner.nextInt();
+            String shit3=scanner.nextLine();
             
             // 计算新的数量
             int newQuantity = quantity + num;
@@ -179,6 +215,7 @@ public class MyshopManager {
             String shopname = scanner.nextLine();
             System.out.print("请输入取出的商品数量：");
             int newquantity = scanner.nextInt();
+            String shit1=scanner.nextLine();
 
             // 更新Goods表中对应行的数量
             String updateGoodsSql = "UPDATE Goods SET quantity = quantity - ? WHERE goodname = ?";

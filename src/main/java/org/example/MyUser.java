@@ -60,7 +60,7 @@ public class MyUser implements MyAction {
                     
                     MyshopManager shop=new MyshopManager(scanner);
                     System.out.print("请选择: a.列出所有商店商品信息 b.增加商品到购物车 c.删除购物车中商品");
-                    System.out.println("d.修改购物车中商品信息 e.模拟结账 f.查看购物历史记录 q.退出");
+                    System.out.println("d.修改购物车中商品信息 e.模拟结账 f.查看购物历史记录 m.列出购物车商品信息 q.退出");
                     
                     String userInput2 = this.scanner.nextLine();
                     if (userInput2.equals("a")) {
@@ -81,6 +81,9 @@ public class MyUser implements MyAction {
                     }
                     else if(userInput2.equals("f")){
                         shop.listShopHistory();
+                    }
+                    else if(userInput2.equals("m")){
+                        shop.listShops();
                     }
                     else if(userInput2.equals("q")){
                         break;
