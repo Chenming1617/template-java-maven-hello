@@ -10,7 +10,7 @@ public class Mygoods implements Myfunction {
     private static final String ACTION_NAME = "goods";
 
     private Scanner scanner = null;
-    Scanner s = new Scanner(System.in);
+
 
     public Mygoods() {
         goodsMap = new HashMap<String, Goods>();

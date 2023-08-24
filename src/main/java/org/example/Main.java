@@ -9,25 +9,14 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
 
-        DatabaseInitializer databaseInitializer = new DatabaseInitializer();
-        databaseInitializer.initializeDatabase();
-
-        MyUserManager userManager = new MyUserManager();
-        
         Scanner scanner = new Scanner(System.in);
 
         List<MyAction> actionList = new ArrayList<MyAction>();
-        MyHelpAction help = new MyHelpAction(scanner);
-        actionList.add(help);
+
+
 
         MyAdminstrator ad=new MyAdminstrator(scanner);
         actionList.add(ad);
-
-        MyUserRegisterAction userRegister = new MyUserRegisterAction(scanner, userManager);
-        actionList.add(userRegister);
-
-        MyUserLoginAction userLogin = new MyUserLoginAction(scanner, userManager);
-        actionList.add(userLogin);
 
         String userInput = "";
 
