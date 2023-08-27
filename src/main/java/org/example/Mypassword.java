@@ -144,15 +144,29 @@ public class Mypassword {
     public void alterUserpass(String name){
         System.out.println("请输入新密码: ");
         String newpassword=scanner.nextLine();
-        userMap.get(name).setPassword(newpassword);
-        System.out.println("修改成功!");
-
+        try {
+            String encryptedPassword = md5(newpassword);
+            userMap.get(name).setPassword(encryptedPassword);
+            System.out.println("修改成功!");
+            writeUserToFile();
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+        }
+        
     }
     public void alterAdmpass(String name){
         System.out.println("请输入新密码: ");
         String newpassword=scanner.nextLine();
-        admMap.get(name).setPassword(newpassword);
-        System.out.println("修改成功!");
+        String encryptedPassword;
+        try {
+            encryptedPassword = md5(newpassword);
+            admMap.get(name).setPassword(encryptedPassword);
+            System.out.println("修改成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
 
     }
     public void listCustomerinf(){
@@ -174,7 +188,9 @@ public class Mypassword {
 
     }
     public void writeUserToFile(){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Customer.csv",true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Customer.csv",false))) {
+            writer.write("name\ttelephone\tpay\tpassword");
+            writer.newLine();
             for (String name : userMap.keySet()) {
                 // 获取键
                 //System.out.println("Key: " + key);
@@ -194,7 +210,9 @@ public class Mypassword {
 
     }
     public void writeAdmToFile(){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Adminstrator.csv",true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Adminstrator.csv",false))) {
+            writer.write("name\tpassword");
+            writer.newLine();
           for (String name : admMap.keySet()) {
               // 获取键
               //System.out.println("Key: " + key);
@@ -292,6 +310,4 @@ public class Mypassword {
     
         return result.toString();
     }
-    
-    
 }
