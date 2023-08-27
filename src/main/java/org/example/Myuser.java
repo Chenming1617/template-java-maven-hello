@@ -27,20 +27,27 @@ public class Myuser implements MyAction {
     @Override
     public void run(String[] args) {
         System.out.print("********欢迎进入用户菜单********\n");
-        System.out.println("请输入用户ID和密码!");
-        // String ID = "";
-        // String psw = "";
-        // ID=s.nextLine();
-        // psw=s.nextLine();
-        // System.out.println(ID+"shi1e");
-        // System.out.println(psw);
+        Mypassword pass=new Mypassword(scanner);
+        Boolean flag=false;
+        while(true){
+            System.out.println("请输入你的指令,login:登录 register:注册 q:退出");
+            String Input=scanner.nextLine();
+            if(Input.equals("q")){
+                break;
+            }
+            if(Input.equals("register")){
+                flag=pass.registerUser();
+            }
+        }
+        
         
          String userInput = "";
          String userInput1="";
 
-        while(true){
-            System.out.println("请输入你的指令,q退出,p密码管理,g购物管理");
+        while(flag){
             System.out.print("你当前在***用户***二级子目录下 >");
+            System.out.println("请输入你的指令,q退出,p密码管理,g购物管理");
+            
             userInput = this.scanner.nextLine();
             if (userInput.equals("q")) {
                 break;

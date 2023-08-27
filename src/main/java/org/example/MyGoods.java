@@ -178,18 +178,19 @@ public class MyGoods {
         }
         else{
             System.out.println("即将列出所有商品信息!");
+            for (String goodsname : goodsMap.keySet()) {
+                // 获取键
+                //System.out.println("Key: " + key);
+                // 获取对应的值
+                System.out.println("the GoodsID: "+goodsMap.get(goodsname).getId());
+                System.out.println("the Goodsname"+goodsMap.get(goodsname).getName());
+                System.out.println("the manufacturer: "+goodsMap.get(goodsname).getManufacturer());
+                System.out.println("the price: "+goodsMap.get(goodsname).getPrice());
+                System.out.println("the quantity: "+goodsMap.get(goodsname).getQuantity());
+                System.out.println("------------------------------------");
+            }
         }
-        for (String goodsname : goodsMap.keySet()) {
-            // 获取键
-            //System.out.println("Key: " + key);
-            // 获取对应的值
-            System.out.println("the GoodsID: "+goodsMap.get(goodsname).getId());
-            System.out.println("the Goodsname"+goodsMap.get(goodsname).getName());
-            System.out.println("the manufacturer: "+goodsMap.get(goodsname).getManufacturer());
-            System.out.println("the price: "+goodsMap.get(goodsname).getPrice());
-            System.out.println("the quantity: "+goodsMap.get(goodsname).getQuantity());
-            System.out.println("------------------------------------");
-        }
+        
         
 
     }
