@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 public class MyGoods {
-    private static LinkedHashMap<String, MyGoods> goodsMap =new LinkedHashMap<String, MyGoods>();; // 用Map来存储商品对象，key为name，value为节点
+    private static LinkedHashMap<String, MyGoods> goodsMap =new LinkedHashMap<String, MyGoods>(); // 用Map来存储商品对象，key为name，value为节点
     private Scanner scanner = null;
     private String id;
     private String name;
@@ -68,23 +68,27 @@ public class MyGoods {
     }
 
     public void addGoods(){
-        System.out.println("请输入goodsID: ");
-        //String goodsID=scanner.nextLine();
-        String goodsID="123";
         System.out.println("请输入goodsname: ");
         String goodsname=scanner.nextLine();
-        System.out.println("请输入manufacturer: ");
-        String manufacturer1=this.scanner.nextLine();
-        System.out.println("请输入price: ");
-        float price=this.scanner.nextFloat();
-        String delete = this.scanner.nextLine();//铲屎
-        System.out.println("请输入quantity:"+delete);
-        int quantity1=this.scanner.nextInt();
-        String delete1 = this.scanner.nextLine();//铲屎
+        if(goodsMap.containsKey(goodsname)){
+            System.out.println("该商品已经存在，如果想修改数值，请选择修改商品！");
+        }else{
+            System.out.println("请输入goodsid: ");
+            String goodsid=scanner.nextLine();
+            System.out.println("请输入manufacturer: ");
+            String manufacturer1=this.scanner.nextLine();
+            System.out.println("请输入price: ");
+            float price=this.scanner.nextFloat();
+            String delete = this.scanner.nextLine();//铲屎
+            System.out.println("请输入quantity: "+delete);
+            int quantity1=this.scanner.nextInt();
+            String delete1 = this.scanner.nextLine();//铲屎
 
-        MyGoods good=new MyGoods(goodsID, goodsname, manufacturer1, price, quantity1);
-        goodsMap.put(good.getName(), good);
-        System.out.println("添加完成！"+delete1);
+            MyGoods good=new MyGoods(goodsid, goodsname, manufacturer1, price, quantity1);
+            goodsMap.put(good.getName(), good);
+            System.out.println("添加完成！"+delete1);
+        
+        }
     }
     public void deltGoods(){
         System.out.println("请输入goodsName: ");
@@ -243,7 +247,6 @@ public class MyGoods {
                     
                 }
             } catch (NumberFormatException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } catch (FileNotFoundException e) {

@@ -27,6 +27,18 @@ public class MyflieInit {
           e.printStackTrace();
         }
     }
+    public void createShopsFile() {
+      try (BufferedWriter writer = new BufferedWriter(new FileWriter("Shops.txt"))) {
+        writer.write("Id\tname\tmanufacturer\tprice\tquantity");
+        writer.newLine();
+  
+        System.out.println("History.txt file created successfully.");
+  
+      } catch (IOException e) {
+        System.out.println("An error occurred while creating the Shops.txt file.");
+        e.printStackTrace();
+      }
+  }
     public void createCustomerFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("Customer.txt"))) {
           writer.write("name\ttelephone\ttotalpay\tpassword");
@@ -39,4 +51,16 @@ public class MyflieInit {
           e.printStackTrace();
         }
     }
+    public void createAdmFile() {
+      try (BufferedWriter writer = new BufferedWriter(new FileWriter("Adminstrator.txt"))) {
+        writer.write("name\tpassword");
+        writer.newLine();
+  
+        System.out.println("Adminstrator.txt file created successfully.");
+  
+      } catch (IOException e) {
+        System.out.println("An error occurred while creating the Adminstrator.txt file.");
+        e.printStackTrace();
+      }
+  }
 }

@@ -8,10 +8,12 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        MyflieInit init=new MyflieInit();
-        init.createCustomerFile();
-        init.createGoodsFile();
-        init.createShopshistoryFile();
+         MyflieInit init=new MyflieInit();
+         init.createAdmFile();
+         init.createShopsFile();
+        // init.createCustomerFile();
+        // init.createGoodsFile();
+        // init.createShopshistoryFile();
         
         List<MyAction> actionList = new ArrayList<MyAction>();
 
@@ -19,6 +21,8 @@ public class Main {
 
         MyAdminstrator ad=new MyAdminstrator(scanner);
         actionList.add(ad);
+        Myuser user= new Myuser(scanner);
+        actionList.add(user);
 
         String userInput = "";
 
