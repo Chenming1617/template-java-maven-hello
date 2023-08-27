@@ -7,10 +7,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.security.MessageDigest;
+
 public class Mypassword {
     private static LinkedHashMap<String, MypassAdm> admMap =new LinkedHashMap<String, MypassAdm>();
     private static LinkedHashMap<String, MypassUser> userMap =new LinkedHashMap<String, MypassUser>();
-    
+    public MypassAdm adm=null;
+    public MypassUser user=null;
     private Scanner scanner = null;
     public Mypassword() {
         
@@ -19,62 +22,82 @@ public class Mypassword {
         this.scanner = scanner;
     }
 
-    public Boolean registerAdm(){
-        //MypassAdm adm=new MypassAdm();
-        System.out.println("请输入注册用户名：");
-        String name=scanner.nextLine();
+    public Boolean registerAdm(String name){
+       
         if(admMap.containsKey(name)){
             System.out.println("注册失败，该用户名已经用过");
             return false;
         }
         else{
-            System.out.println("请输入密码：");
-            String password=scanner.nextLine();
-            MypassAdm adm=new MypassAdm(name,password);
-            admMap.put(name,adm);
-            System.out.println("管理员注册成功！");
+            try {
+                System.out.print("请输入password: ");
+                String password = scanner.nextLine();
+    
+                String encryptedPassword = md5(password);
+                adm=new MypassAdm(name,encryptedPassword);
+                admMap.put(name,adm);
+                System.out.println("管理员注册成功！");
+                writeAdmToFile();
+                 
+    
+    
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return true;
         }
+        
     }
-    public Boolean registerUser(){
-        System.out.println("请输入注册用户名：");
-        String name=scanner.nextLine();
+    public Boolean registerUser(String name){
+        
         if(userMap.containsKey(name)){
             System.out.println("注册失败，该用户名已经用过");
             return false;
         }
         else{
-            System.out.println("请输入密码：");
-            String password=scanner.nextLine();
-            System.out.println("请输入电话号码：");
-            String telephone=scanner.nextLine();
-            double pay =0.;
-            MypassUser user=new MypassUser(name,telephone,pay,password);
-            userMap.put(name,user);
-            System.out.println("用户注册成功！");
+            try {
+                System.out.print("请输入password: ");
+                String password = scanner.nextLine();
+                String encryptedPassword = md5(password);
+                System.out.println("请输入电话号码：");
+                String telephone=scanner.nextLine();
+                double pay =0.;
+    
+                user=new MypassUser(name,telephone,pay,encryptedPassword);
+                userMap.put(name,user);
+                System.out.println("用户注册成功！");
+                writeUserToFile();
+                 
+    
+    
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return true;
         }
 
     }
-    public Boolean loginAdm(){
-        System.out.println("请输入用户名: ");
-        String name=scanner.nextLine();
+    public Boolean loginAdm(String name){
         if(admMap.containsKey(name)){
             while(true){
             int flag=4;
             System.out.println("请输入密码: ");
             String password=scanner.nextLine();
-            if(admMap.get(name).getPassword().equals(password)){
-                System.out.println("登录成功！");
-                return true;
-            }
-            else{
-                if(flag<=0){
-                    return false;
+            try {
+                if(admMap.get(name).getPassword().equals(md5(password))){
+                    System.out.println("登录成功！");
+                    return true;
                 }
-                System.out.println("密码输入错误！你还有"+flag+"次机会，否则账户锁定！");
-                flag=flag-1;
+                else{
+                    if(flag<=0){
+                        return false;
+                    }
+                    System.out.println("密码输入错误！你还有"+flag+"次机会，否则账户锁定！");
+                    flag=flag-1;
 
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             }  
         }
@@ -84,23 +107,27 @@ public class Mypassword {
         }
 
     }
-    public Boolean loginUser(){
-        System.out.println("请输入用户名: ");
-        String name=scanner.nextLine();
+    public Boolean loginUser(String name){
+        
         if(userMap.containsKey(name)){
             while(true){
             int flag=4;
             System.out.println("请输入密码: ");
             String password=scanner.nextLine();
-            if(userMap.get(name).getPassword().equals(password)){
-                System.out.println("登录成功！");
-                return true;
-            }
-            else{
-                if(flag<=0)return false;
-                System.out.println("密码输入错误！你还有"+flag+"次机会，否则账户锁定！");
-                flag=flag-1;
+            try {
+                if(userMap.get(name).getPassword().equals(md5(password))){
+                    System.out.println("登录成功！");
+                    return true;
+                }
+                else{
+                    if(flag<=0)return false;
+                    System.out.println("密码输入错误！你还有"+flag+"次机会，否则账户锁定！");
+                    flag=flag-1;
 
+                }
+            } catch (Exception e) {
+                
+                e.printStackTrace();
             }
             }  
         }
@@ -202,7 +229,7 @@ public class Mypassword {
                      String name = data[0];
                      String password = data[1];
                      
-                     MypassAdm adm=new MypassAdm(name, password);
+                     adm=new MypassAdm(name, password);
                      admMap.put(adm.getName(), adm);
                      
                  }
@@ -238,7 +265,7 @@ public class Mypassword {
                      String telephone = data[1];
                      String password = data[3];
                      double pay = Double.parseDouble(data[2]);
-                     MypassUser user=new MypassUser(name, telephone,pay,password);
+                     user=new MypassUser(name, telephone,pay,password);
                      userMap.put(user.getName(), user);
                      
                  }
@@ -249,5 +276,17 @@ public class Mypassword {
              e.printStackTrace();
          }
     }
+    private static String md5(String input) throws Exception {
+        final MessageDigest md = MessageDigest.getInstance("MD5");
+        byte[] bytes = md.digest(input.getBytes());
+    
+        StringBuilder result = new StringBuilder();
+        for (byte b : bytes) {
+            result.append(String.format("%02x", b));
+        }
+    
+        return result.toString();
+    }
+    
     
 }

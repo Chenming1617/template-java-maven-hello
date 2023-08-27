@@ -8,9 +8,9 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-         MyflieInit init=new MyflieInit();
-         init.createAdmFile();
-         init.createShopsFile();
+        // MyflieInit init=new MyflieInit();
+        // init.createAdmFile();
+        // init.createShopsFile();
         // init.createCustomerFile();
         // init.createGoodsFile();
         // init.createShopshistoryFile();

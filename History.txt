@@ -1,1 +1,2 @@
 name	manufacturer	pay	quantity
+雪碧	百事可乐饮料公司	15.0	5

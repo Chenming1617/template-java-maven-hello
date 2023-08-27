@@ -28,6 +28,8 @@ public class Myuser implements MyAction {
     public void run(String[] args) {
         System.out.print("********欢迎进入用户菜单********\n");
         Mypassword pass=new Mypassword(scanner);
+        String name="";
+        pass.readUserFile();
         Boolean flag=false;
         while(true){
             System.out.println("请输入你的指令,login:登录 register:注册 q:退出");
@@ -36,7 +38,16 @@ public class Myuser implements MyAction {
                 break;
             }
             if(Input.equals("register")){
-                flag=pass.registerUser();
+                System.out.println("请输入注册用户名：");
+                name=scanner.nextLine();
+                flag=pass.registerUser(name);
+                break;
+            }
+            else if(Input.equals("login")){
+                System.out.println("请输入用户名: ");
+                name=scanner.nextLine();
+                flag=pass.loginUser(name);
+                break;
             }
         }
         
@@ -50,13 +61,16 @@ public class Myuser implements MyAction {
             
             userInput = this.scanner.nextLine();
             if (userInput.equals("q")) {
+                pass.writeUserToFile();
                 break;
             }
-            if (userInput.equals("g")){
-                
-                MyGoods good=new MyGoods(scanner);
-                MyShops shop=new MyShops(scanner);
-                while(true){
+            else if(userInput.equals("p")){
+                System.out.println("你现在在****密码管理三级子菜单下");
+                pass.alterUserpass(name);
+            }
+            else if (userInput.equals("g")){
+                 MyShops shop=new MyShops(scanner);
+                 while(true){
                     System.out.println("你现在在**购物管理**三级子菜单下");
                     System.out.print("请选择: 1.列出可购商品 2.添加商品到购物车 3.删除购物车信息 4.修改购物车信息 5.查询购物车信息 6.模拟结账 7.查看购物历史 q.退出");
                     userInput1=this.scanner.nextLine();
@@ -89,7 +103,6 @@ public class Myuser implements MyAction {
                     else if(userInput1.equals("7")){
                        shop.listShopsHistroy();
                     }
-
                     else if(userInput1.equals("q")){
                         break;
                     }
@@ -99,7 +112,7 @@ public class Myuser implements MyAction {
             }
 
         }
-
+        
     }
     
 }
