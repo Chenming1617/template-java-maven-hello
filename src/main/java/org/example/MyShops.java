@@ -69,7 +69,7 @@ public class MyShops {
     }
     public void readGoodsFile(){//读商品信息Goods文件
         // 指定文件路径
-        String filePath = "Goods.txt";
+        String filePath = "Goods.csv";
 
         try {
             // 创建文件对象
@@ -241,7 +241,7 @@ public class MyShops {
             if(num<=shopsMap.get(shopsname).quantity){
                 double pay=num*shopsMap.get(shopsname).Price;
                 shopsMap.get(shopsname).setQuantity(shopsMap.get(shopsname).quantity-num);
-                try (BufferedWriter writer = new BufferedWriter(new FileWriter("History.txt",true))) {
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter("History.csv",true))) {
                    
                       writer.write(shopsname + "\t" +
                                 shopsMap.get(shopsname).getManufacturer() + "\t" +
@@ -267,7 +267,7 @@ public class MyShops {
 
     }
     public void listShopsHistroy(){
-        String filePath = "History.txt";
+        String filePath = "History.csv";
 
         try {
             // 创建文件对象
@@ -308,7 +308,7 @@ public class MyShops {
 
     public void readShopsFile(){
         // 指定文件路径
-        String filePath = "Shops.txt";
+        String filePath = "Shops.csv";
 
         try {
             // 创建文件对象
@@ -344,7 +344,7 @@ public class MyShops {
         }
     }
     public void writeShopsToFile() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Shops.txt",false))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Shops.csv",false))) {
           // 写入第一行的标题
            writer.write("Id\tname\tmanufacturer\tprice\tquantity");
            writer.newLine();

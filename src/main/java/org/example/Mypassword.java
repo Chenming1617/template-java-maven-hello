@@ -30,17 +30,19 @@ public class Mypassword {
         }
         else{
             try {
-                System.out.print("请输入password: ");
+                System.out.print("请输入6-12位的password: ");
                 String password = scanner.nextLine();
-    
-                String encryptedPassword = md5(password);
-                adm=new MypassAdm(name,encryptedPassword);
-                admMap.put(name,adm);
-                System.out.println("管理员注册成功！");
-                writeAdmToFile();
-                 
-    
-    
+                if(password.length()<=12&&password.length()>=6){
+                    String encryptedPassword = md5(password);
+                    adm=new MypassAdm(name,encryptedPassword);
+                    admMap.put(name,adm);
+                    System.out.println("管理员注册成功！");
+                    writeAdmToFile();
+                }
+                else{
+                    System.out.println("密码不是6-12位,重新输入吧！");
+                    return false;
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -56,20 +58,23 @@ public class Mypassword {
         }
         else{
             try {
-                System.out.print("请输入password: ");
+                System.out.print("请输入6-12位password: ");
                 String password = scanner.nextLine();
-                String encryptedPassword = md5(password);
-                System.out.println("请输入电话号码：");
-                String telephone=scanner.nextLine();
-                double pay =0.;
+               if(password.length()>=6&&password.length()<=12){
+                    String encryptedPassword = md5(password);
+                    System.out.println("请输入电话号码：");
+                     String telephone=scanner.nextLine();
+                    double pay =0.;
     
-                user=new MypassUser(name,telephone,pay,encryptedPassword);
-                userMap.put(name,user);
-                System.out.println("用户注册成功！");
-                writeUserToFile();
-                 
-    
-    
+                     user=new MypassUser(name,telephone,pay,encryptedPassword);
+                     userMap.put(name,user);
+                     System.out.println("用户注册成功！");
+                     writeUserToFile();
+               }
+               else{
+                System.out.println("密码不是6-12位,重新输入吧！");
+                return false;
+               }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -169,7 +174,7 @@ public class Mypassword {
 
     }
     public void writeUserToFile(){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Customer.txt",true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Customer.csv",true))) {
             for (String name : userMap.keySet()) {
                 // 获取键
                 //System.out.println("Key: " + key);
@@ -189,7 +194,7 @@ public class Mypassword {
 
     }
     public void writeAdmToFile(){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Adminstrator.txt",true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Adminstrator.csv",true))) {
           for (String name : admMap.keySet()) {
               // 获取键
               //System.out.println("Key: " + key);
@@ -207,7 +212,7 @@ public class Mypassword {
     }
     public void readAdmFile(){
          // 指定文件路径
-         String filePath = "Adminstrator.txt";
+         String filePath = "Adminstrator.csv";
 
          try {
              // 创建文件对象
@@ -242,7 +247,7 @@ public class Mypassword {
     }
     public void readUserFile(){
          // 指定文件路径
-         String filePath = "Customer.txt";
+         String filePath = "Customer.csv";
 
          try {
              // 创建文件对象

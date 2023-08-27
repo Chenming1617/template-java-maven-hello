@@ -195,7 +195,7 @@ public class MyGoods {
 
     }
     public void writeGoodsToFile() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Goods.txt",false))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Goods.csv",false))) {
           // 写入第一行的标题
            writer.write("Id\tname\tmanufacturer\tprice\tquantity");
            writer.newLine();
@@ -219,7 +219,7 @@ public class MyGoods {
       }
     public void readFile(){
         // 指定文件路径
-        String filePath = "Goods.txt";
+        String filePath = "Goods.csv";
 
         try {
             // 创建文件对象
