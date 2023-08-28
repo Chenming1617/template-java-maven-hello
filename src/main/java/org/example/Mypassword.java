@@ -208,7 +208,6 @@ public class Mypassword {
     public void readAdmFile(){
          // 指定文件路径
          String filePath = "Adminstrator.txt";
-
          try {
              // 创建文件对象
              File file = new File(filePath);
@@ -218,20 +217,16 @@ public class Mypassword {
                  String firstLine = scanner1.nextLine();
                  // 使用制表符分隔列名
                  String[] columnNames = firstLine.split("\t");
- 
                  // 读取后续行的数据
                  while (scanner1.hasNextLine()) {
                      String line = scanner1.nextLine();
                      // 使用制表符分隔各列数据
                      String[] data = line.split("\t");
- 
                      // 将数据存储到相应的变量中
                      String name = data[0];
-                     String password = data[1];
-                     
+                     String password = data[1]; 
                      adm=new MypassAdm(name, password);
-                     admMap.put(adm.getName(), adm);
-                     
+                     admMap.put(adm.getName(), adm);   
                  }
              } catch (NumberFormatException e) {
                  e.printStackTrace();
