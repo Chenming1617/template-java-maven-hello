@@ -12,8 +12,8 @@ import java.security.MessageDigest;
 public class Mypassword {
     private static LinkedHashMap<String, MypassAdm> admMap =new LinkedHashMap<String, MypassAdm>();
     private static LinkedHashMap<String, MypassUser> userMap =new LinkedHashMap<String, MypassUser>();
-    public MypassAdm adm=null;
-    public MypassUser user=null;
+    private MypassAdm adm=null;
+    private MypassUser user=null;
     private Scanner scanner = null;
     public Mypassword() {
         
@@ -51,7 +51,7 @@ public class Mypassword {
         
     }
     public Boolean registerUser(String name){
-        
+
         if(userMap.containsKey(name)){
             System.out.println("注册失败，该用户名已经用过");
             return false;
