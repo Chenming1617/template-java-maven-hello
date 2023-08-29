@@ -242,20 +242,16 @@ public class MyShops {
                 double pay=num*shopsMap.get(shopsname).Price;
                 shopsMap.get(shopsname).setQuantity(shopsMap.get(shopsname).quantity-num);
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter("History.txt",true))) {
-                   
                       writer.write(shopsname + "\t" +
                                 shopsMap.get(shopsname).getManufacturer() + "\t" +
                                 pay + "\t" +
                                 num);
                     writer.newLine();
-                  
                     System.out.println("History data written to file successfully."+shit);
-              
                   } catch (IOException e) {
                     System.out.println("An error occurred while writing history data to file.");
                     e.printStackTrace();
                   }
-
             }
             else {
                 System.out.println("购买的数量超过了购物车中该商品的数量");
@@ -264,7 +260,6 @@ public class MyShops {
         else{
             System.out.println("购物车中没有该商品");
         }
-
     }
     public void listShopsHistroy(){
         String filePath = "History.txt";
