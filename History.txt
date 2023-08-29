@@ -1,2 +1,3 @@
 name	manufacturer	pay	quantity
 北冰洋	中国北冰洋饮料有限公司	5.0	1
+雪碧	百事可乐饮料公司	7.0	2
