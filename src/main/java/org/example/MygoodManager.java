@@ -110,7 +110,7 @@ public class MygoodManager {
             // 键盘输入取出或增加的数量(num)
             System.out.print("请输入要取出(负数)或增加的数量：");
             int num = scanner.nextInt();
-            
+            String shit=scanner.nextLine();
             // 计算新的数量
             int newQuantity = quantity + num;
             
@@ -121,7 +121,7 @@ public class MygoodManager {
             updateStatement.setString(2, name);
             int rowsAffected = updateStatement.executeUpdate();
             
-            System.out.println(rowsAffected + " 行数据已更新。");
+            System.out.println(rowsAffected + " 行数据已更新。"+shit);
             
             // 关闭资源
             updateStatement.close();
