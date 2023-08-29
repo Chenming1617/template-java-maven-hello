@@ -61,7 +61,6 @@ public class Myuser implements MyAction {
             
             userInput = this.scanner.nextLine();
             if (userInput.equals("q")) {
-                pass.writeUserToFile();
                 break;
             }
             else if(userInput.equals("p")){

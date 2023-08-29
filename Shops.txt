@@ -1,2 +1,1 @@
 Id	name	manufacturer	price	quantity
-2	雪碧	百事可乐饮料公司	3.0	5
